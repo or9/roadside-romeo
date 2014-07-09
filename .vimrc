@@ -1,4 +1,5 @@
 execute pathogen#infect()
+set t_Co=256
 set nocompatible
 syntax on
 colo default
@@ -16,8 +17,8 @@ set scrolloff=5
 set wildmenu " ex., :e <tab> shows list of available <e> commands
 set visualbell
 set noerrorbells
-"set wildmenu=list:longest
-"set cursorline
+set backspace=indent,eol,start
+set cursorline
 
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
 map <C-t><up>	:tabr<cr>
@@ -28,6 +29,7 @@ nmap ,, :TagbarToggle<CR>
 nnoremap <unique> <leader>t :MakeGreen %<CR>
 nmap <Space> <C-d> 
 nmap <M-Space> <C-u>
+nnoremap <C-n> :NERDTreeToggle<CR>
 set mouse=a
 autocmd FileType javascript compiler nodeunit
 autocmd BufNewFile,BufRead *.spec.js compiler nodeunit
@@ -46,32 +48,48 @@ set showmatch		" show matching brackets
 "	exec "map! \e". c ." <M-". c .">"
 "endfor
 
+
 " Lisp
-autocmd FileType list,scheme setlocal equalprg=~/.vim/bin/lispindent.lisp
+"autocmd FileType list,scheme setlocal equalprg=~/.vim/bin/lispindent.lisp
 
 " Javascript
-au! BufRead,BufNewFile *.json set filetype=json
-augroup json_autocmd
-	autocmd!
-	autocmd FileType json set autoindent
-	autocmd FileType json set formatoptions=tcq2l
-	autocmd FileType json set textwidth=78 shiftwidth=2
-	autocmd FileType json set softtabstop=2 tabstop=8
-	autocmd FileType json set expandtab 
-	autocmd FileType json set foldmethod=syntax
-augroup END
+"au! BufRead,BufNewFile *.json set filetype=json
+"augroup json_autocmd
+"	autocmd!
+"	autocmd FileType json set autoindent
+"	autocmd FileType json set formatoptions=tcq2l
+"	autocmd FileType json set textwidth=78 shiftwidth=2
+"	autocmd FileType json set softtabstop=2 tabstop=8
+"	autocmd FileType json set expandtab 
+"	autocmd FileType json set foldmethod=syntax
+"augroup END
 "autocmd BufRead,BufNewFile *.json setfiletype javascript
+
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 let javascript_enable_domhtmlcss=1
 
 let g:indent_guides_enable_on_vim_startup=1
+"let g:gitgutter_highlight_lines=1
+
+function! AirlineInit()
+	let g:airline_section_a = airline#section#create(['mode',' ','branch'])
+endfunction
+autocmd VimEnter * call AirlineInit()
+let g:airline#extensions#tabline#enabled=1
 
 " molokai theme "
 "let g:molokai_original=1
 let g:rehash256=1
 
+
 " solarized theme "
+"let g:solarized_termcolors=256
+"set background=dark
 
-
+"colorscheme solarized
+colorscheme	molokai 
 
 " Open a file and type :colorscheme followed by a space
 " Press tab to cycle (or shift-tab to reverse).
