@@ -19,6 +19,9 @@ set visualbell
 set noerrorbells
 set backspace=indent,eol,start
 set cursorline
+set wildchar=<Tab> wildmenu wildmode=full
+set wildcharm=<C-Z>
+nnoremap <F10> :b <C-Z>
 
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4
 map <C-t><up>	:tabr<cr>
