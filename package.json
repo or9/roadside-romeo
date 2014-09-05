@@ -1,44 +1,38 @@
 {
   "name": "roadside-romeo",
   "version": "0.0.1",
-<<<<<<< HEAD
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": ""
+    "test": "test"
   },
   "dependencies": {
     "express": "~4.8.6",
     "body-parser": "~1.6.6",
     "cookie-parser": "~1.3.2",
     "morgan": "~1.2.3",
-    "serve-favicon": "~2.0.1",
-    "debug": "~1.0.4",
-    "jade": "~1.5.0"
-  },
-  "repository": "https://github.com/or9/roadside-romeo"
-=======
-  "description": "example application for Postman, Newman, Superagent, request, response demo app",
-  "main": "app.js",
-  "scripts": {
-    "test": "test"
+    "serve-favicon": "~2.0.1"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/or9/roadside-romeo"
   },
+  "description": "example application for Postman, Newman, Superagent, request, response demo app",
+  "main": "app.js",
   "keywords": [
     "express",
     "postman",
     "newman",
     "superagent"
   ],
-  "author": "Drahman",
+  "author": "Drahman A.",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/or9/roadside-romeo/issues"
   },
   "homepage": "https://github.com/or9/roadside-romeo",
-  "private": true
->>>>>>> 7c89402133f95a757aa106364d179f717e2354f0
+  "devDependencies": {
+    "debug": "^1.0.4",
+    "jade": "~1.5.0"
+  }
 }
