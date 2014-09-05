@@ -1,0 +1,26 @@
+{
+  "name": "roadside-romeo",
+  "version": "0.0.1",
+  "description": "example application for Postman, Newman, Superagent, request, response demo app",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/or9/roadside-romeo"
+  },
+  "keywords": [
+    "express",
+    "postman",
+    "newman",
+    "superagent"
+  ],
+  "author": "Drahman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/or9/roadside-romeo/issues"
+  },
+  "homepage": "https://github.com/or9/roadside-romeo",
+  "private": true
+}
