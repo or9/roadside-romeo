@@ -21,6 +21,7 @@ HTTP Headers [Name | Description | Required]
 Path Parameters [Name | Description]  
 >`offer_id` _offerID_	 
 > Body: _None_   
+
 _Response_  
 >HTTP Status Code: 200 (“OK”) 
 
