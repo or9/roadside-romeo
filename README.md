@@ -17,12 +17,13 @@ Response Formats: `json, xml`
 __Request__  
 HTTP Headers [Name | Description | Required]  
 >`Authorization` _Access token_ __Required__  
->`Accept` [`application/json` | `application/xml`] __Required__   
+`Accept` [`application/json` | `application/xml`] __Required__   
+
 Path Parameters [Name | Description]  
 >`offer_id` _offerID_	 
-> Body: _None_   
+Body: _None_   
 
-_Response_  
+__Response__ 
 >HTTP Status Code: 200 (“OK”) 
 
 _Possible Errors_ [Error Code | Description]
