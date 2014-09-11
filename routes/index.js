@@ -1,14 +1,28 @@
 var express = require('express');
 var router = express.Router();
 var util = require("util");
+var controller = {
+	home: require("controller/home"),
+	services: require("controller/services"),
+	users: require("controller/users")
+};
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+	var renderedPageProperties = {};
+	for(var key in req.query) {
+		renderedPageProperties[key] = req.query[key];
+	}
+
+  //res.render('index', { title: 'Express' });
+  res.render('index', obj);
 });
 
-router.get('/:HTML.html', renderHTML);
-router.get('/:JSON.json', returnJSON);
+router.post("/", controller.home.POST);
+router.all("/users", controller.users.all);
+router.get("/api/services", returnServices);
+router.post("/api/services", returnServices);
+router.post("/api/services", returnServices);
 
 function renderHTML(req, res) {
 	util.log("rendering HTML… ");
