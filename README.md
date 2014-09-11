@@ -6,7 +6,7 @@ cd appDirname/
 npm install 
 npm start
 ```
-Application listens on port 3000
+Application listens on port 3000  
 `router.js` is the single router for Application
 ##Sample Postman Workflow
 ###Sample API
