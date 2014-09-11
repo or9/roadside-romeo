@@ -33,6 +33,8 @@
   "homepage": "https://github.com/or9/roadside-romeo",
   "devDependencies": {
     "debug": "^1.0.4",
-    "jade": "~1.5.0"
+    "jade": "~1.5.0",
+    "dummy-json": "0.0.2",
+    "xml2js": "^0.4.4"
   }
 }

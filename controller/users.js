@@ -1,7 +1,9 @@
+var util = require("util");
 module.exports = Users;
 
 function Users() {
-	require("./base").call(this);
+	require("./base").call(this, "users");
+	var template = this.getResponseData();
 	this.all = servicesAll;
 	this.GET = servicesAll;
 	this.POST = servicesAll;
@@ -10,6 +12,7 @@ function Users() {
 	this.DELETE = servicesAll;
 
 	function servicesAll(req, res) {
-		console.log("all Users' services routed through here");
+		util.log("Users Controller single router endpoint");
+
 	}
 }

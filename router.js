@@ -23,6 +23,7 @@ router.get('/', function(req, res) {
 router.put("/", controller.home.POST);
 router.all("/users", controller.users.all);
 router.get("/users", controller.services.GET);
+router.get("/services", controller.services.GET);
 router.post("/services", controller.services.POST);
 router.head("/services", controller.services.HEAD);
 

@@ -1,34 +1,41 @@
+var util = require("util");
+var fs = require("fs");
 module.exports = Base;
 
-function Base() {
+function Base(controllerName) {
+	var instanceName = controllerName;
 	this.GET = get;
 	this.POST = post;
 	this.PUT = put;
 	this.HEAD = head;
 	this.DELETE = del;
+	this.getResponseData = function getData(ext) {
+		ext = ext || ".json";
+		return fs.readFileSync("data/" + instanceName + ext, {encoding: "utf8"});
+	};
 }
 
 function get(req, res) {
-	console.log("GETTING through base controller");
-	res.send(200);
+	util.log("GETTING through base controller");
+	res.status(200).end();
 }
 
 function post(req, res) {
-	console.log("POSTing throgh base controller");
-	res.send(200);
+	util.log("POSTing throgh base controller");
+	res.status(200).end();
 }
 
 function put(req, res) {
-	console.log("PUTting through base controller");
-	res.send(200);
+	util.log("PUTting through base controller");
+	res.status(200).end();
 }
 
 function head(req, res) {
-	console.log("HEADing via base controller");
-	res.send(200);
+	util.log("HEADing via base controller");
+	res.status(200).end();
 }
 
 function del(req, res) {
-	console.log("DELETE'ing via base controller");
-	res.send(200);
+	util.log("DELETE'ing via base controller");
+	res.status(200).end();
 }
