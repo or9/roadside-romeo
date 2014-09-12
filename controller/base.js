@@ -10,12 +10,24 @@ function Base(controllerName) {
 	this.PUT = put;
 	this.HEAD = head;
 	this.DELETE = del;
+
 	this.getResponseData = function getData(ext) {
 		ext = ext || "json";
 		return fs.readFileSync("data/" + instanceName + "." + ext, {encoding: "utf8"});
 	};
+
 	this.getDummyJson = function getDummyJson() {
 		return dummyJson;
+	};
+
+	this.templateData = {
+		helper: {
+			city: function(options) {
+				var cities = ["Mordor", "Detroit", "Anchorage", "Outer Haven", "Midgar", "Zanzabarland", "Bear Lake", "Atlantis", "Columbia", "Rapture", "Shadow Moses", "Fox Archipelago"];
+				var random = Math.random();
+				return cities[Math.floor(random *= cities.length)];
+			}
+		}
 	};
 }
 

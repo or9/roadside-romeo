@@ -5,6 +5,7 @@ function Services() {
 	require("./base").call(this, "services");
 	var template = this.getResponseData("hbs");
 	var dummyJson = this.getDummyJson();
+	var templateData = this.templateData;
 	this.POST = post;
 
 	function head(req, res) {
@@ -15,6 +16,6 @@ function Services() {
 	function post(req, res) {
 		util.log("POSTing via services controller");
 		res.set("Content-Type", "application/json");
-		res.send(dummyJson.parse(template));
+		res.send(dummyJson.parse(template, {helpers: templateData.helper}));
 	}
 }
