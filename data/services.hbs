@@ -1,9 +1,10 @@
 {
   "services": [
-  {{repeat 40}}
-  {{company}}: {
-    "id": {{index}},
-    "owner": {{uniqueIndex}},
+  {{#repeat 40}}
+	{
+		"id": {{index}},
+		"company": {{company}},
+    "owner": {{number 20}},
     "amenities": {
       "droneDelivery": {{boolean}},
       "buffet": {{boolean}},

@@ -3,7 +3,8 @@ module.exports = Services;
 
 function Services() {
 	require("./base").call(this, "services");
-	var responseJson = this.getResponseData();
+	var template = this.getResponseData("hbs");
+	var dummyJson = this.getDummyJson();
 	this.POST = post;
 
 	function head(req, res) {
@@ -13,6 +14,7 @@ function Services() {
 
 	function post(req, res) {
 		util.log("POSTing via services controller");
-		res.json(200, responseJson(req));
+		res.set("Content-Type", "application/json");
+		res.send(dummyJson.parse(template));
 	}
 }

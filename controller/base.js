@@ -1,5 +1,6 @@
 var util = require("util");
 var fs = require("fs");
+var dummyJson = require("dummy-json");
 module.exports = Base;
 
 function Base(controllerName) {
@@ -10,8 +11,11 @@ function Base(controllerName) {
 	this.HEAD = head;
 	this.DELETE = del;
 	this.getResponseData = function getData(ext) {
-		ext = ext || ".json";
-		return fs.readFileSync("data/" + instanceName + ext, {encoding: "utf8"});
+		ext = ext || "json";
+		return fs.readFileSync("data/" + instanceName + "." + ext, {encoding: "utf8"});
+	};
+	this.getDummyJson = function getDummyJson() {
+		return dummyJson;
 	};
 }
 
