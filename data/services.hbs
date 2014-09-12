@@ -1,22 +1,23 @@
 {
-  "services": [
-  {{#repeat 40}}
+	"services": [
+	{{#repeat 40}}
 	{
 		"id": {{index}},
-		"company": {{company}},
-    "owner": {{number 20}},
-    "amenities": {
-      "droneDelivery": {{boolean}},
-      "buffet": {{boolean}},
-      "restrooms": {{boolean}},
-      "helicopter cheauffer": {{boolean}},
-      "durand durand": {{boolean}},
-      "NIN": {{boolean}},
-      "spaceship": {{boolean}},
-      "moonlight sonata": {{boolean}},
-      "summer wind": {{boolean}},
-      "Janáček's Sinfonietta": {{boolean}}
-    }
-  }
-  {{/repeat}}
+		"company": "{{company}}",
+		"owner": {{number 20}},
+		"service": {
+			"droneDelivery": {{boolean}},
+			"buffet": {{boolean}},
+			"restrooms": {{boolean}},
+			"helicopter cheauffer": {{boolean}},
+			"durand durand": {{boolean}},
+			"NIN": {{boolean}},
+			"spaceship": {{boolean}},
+			"moonlight sonata": {{boolean}},
+			"summer wind": {{boolean}},
+			"Janáček's Sinfonietta": {{boolean}}
+		}
+	}
+	{{/repeat}}
+	]
 }

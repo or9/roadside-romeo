@@ -1,14 +1,13 @@
 {
-  "users": [
-  {{#repeat 20}}
-  {
-    "id": {{index}},
-    "name_first": {{firstName}},
-    "name_last": {{lastName}},
-    "email": {{email}},
-    "company": {{company}},
+	"users": [
+	{{#repeat 20}}
+	{
+		"id": {{index}},
+		"name": [{{lastName}}, {{firstName}}]
+		"email": "{{email}}",
+		"company": "{{company}}",
 		"age": {{number 18 68}}
 	}
 	{{/repeat}}
-  ]
+	]
 }
