@@ -14,7 +14,7 @@ function Base(controllerName) {
 
 	this.getResponseData = function getData(ext) {
 		ext = ext || "json";
-		return fs.readFileSync("data/" + instanceName + "." + ext, {encoding: "utf8"});
+		return fs.readFileSync("data_templates/" + instanceName + "." + ext, {encoding: "utf8"});
 	};
 
 	this.getDummyJson = function getDummyJson() {
