@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www --verbose",
+    "stop": "./stop.sh",
     "test": "./node_modules/.bin/newman -c postman/DAPI.json.postman_collection -e postman/DAPI.postman_environment -o target/test/newman.json"
   },
   "dependencies": {
