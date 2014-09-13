@@ -15,7 +15,14 @@ function Services() {
 
 	function post(req, res) {
 		util.log("POSTing via services controller");
-		res.set("Content-Type", "application/json");
-		res.send(dummyJson.parse(template, {helpers: templateData.helper}));
+		var xmlBuilder = null, xml = null;
+		var resMessage = dummyJson.parse(template);
+		res.set("Content-Type", req.get("Accept"));
+		if(res.get("Content-Type") === "application/xml") {
+			xmlBuilder = new xml2js.Builder();
+			resMessage = xmlBuilder.buildObject(resMessage);
+		}
+
+		res.status(200).send(dummyJson.parse(template, {helpers: templateData.helper}));
 	}
 }
