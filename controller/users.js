@@ -10,6 +10,7 @@ function Users() {
 	this.generic = generic;
 	this.GET = generic;
 	this.HEAD = head;
+	this.getUser = getUser;
 	this.postRegisterUser = registerUser;
 	this.postForUserInfo = postForUserInfo;
 
