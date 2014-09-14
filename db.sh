@@ -21,12 +21,8 @@ function stop() {
 	PID=$(cat $PIDFILE)
 	pkill -signal SIGINT roadside-romeo
 	echo "killing mongodb instance by PID ($PID)"
-	if [ ! -f "$PIDFILE" ]; then
-		kill $(pgrep mongod)
-	else
-		kill -F $PIDFILE
-	fi
-	if [ -d "./mongodb.pid" ]; then
+	kill $(pgrep mongod)
+	if [ -f "./mongodb.pid" ]; then
 		rm -v ./mongodb.pid
 	fi
 }

@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var router = require("./router");
 var util = require("util");
+//var goose = new require("./models/database")();
 
 var app = express();
 
@@ -24,6 +25,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.set("routes", path.join(__dirname, "routes"));
 console.log("app routes? ", app.get("routes"));
+/*app.use(function(req, res, next) {
+	req.db = goose;
+	next();
+});*/
 app.use('/', router);
 
 // catch 404 and forward to error handler

@@ -1,10 +1,9 @@
 {
 	"services": [
-	{{#repeat 40}}
+	{{#repeat 10}}
 	{
-		"id": {{index}},
-		"company": "{{company}}",
 		"owner": {{number 20}},
+		"company": "{{company}}",
 		"city": "{{city}}",
 		"service": {
 			"droneDelivery": {{boolean}},
@@ -17,7 +16,9 @@
 			"moonlight sonata": {{boolean}},
 			"summer wind": {{boolean}},
 			"Janáček's Sinfonietta": {{boolean}}
-		}
+			},
+		"created_at": "{{date}}",
+		"updated_at": "{{date}}"
 	}
 	{{/repeat}}
 	]

@@ -15,14 +15,13 @@ router.get('/', function(req, res) {
 	for(var key in req.query) {
 		renderedPageProperties[key] = req.query[key];
 	}
-
-  //res.render('index', { title: 'Express' });
   res.render('index', renderedPageProperties);
 });
 
 router.put("/", controller.home.POST);
-router.all("/users", controller.users.all);
-router.get("/users", controller.services.GET);
+router.post("/register", controller.users.registerUser);
+router.post("/user/:EMAIL", controller.users.postForUserInfo);
+router.all("/users", controller.users.generic);
 router.get("/services", controller.services.GET);
 router.post("/services", controller.services.POST);
 router.head("/services", controller.services.HEAD);

@@ -2,7 +2,10 @@ var util = require("util");
 var fs = require("fs");
 var dummyJson = require("dummy-json");
 var xml2js = require("xml2js");
+var goose = new require("../models/database")();
 module.exports = Base;
+
+console.log("got the golden goose, and here it is: ", goose);
 
 function Base(controllerName) {
 	var instanceName = controllerName;
@@ -11,6 +14,10 @@ function Base(controllerName) {
 	this.PUT = put;
 	this.HEAD = head;
 	this.DELETE = del;
+	
+	this.getDatabase = function() {
+		return goose;
+	};
 
 	this.getResponseData = function getData(ext) {
 		ext = ext || "json";
@@ -31,6 +38,15 @@ function Base(controllerName) {
 				var cities = ["Mordor", "Detroit", "Anchorage", "Outer Haven", "Midgar", "Zanzabarland", "Bear Lake", "Atlantis", "Columbia", "Rapture", "Shadow Moses", "Fox Archipelago"];
 				var random = Math.random();
 				return cities[Math.floor(random *= cities.length)];
+			},
+			password: function(options) {
+				return (Math.random() + 1).toString(36).substring(5, 14);
+			},
+			created_at: function(options) {
+				return new Date();
+			},
+			updated_at: function(options) {
+				return this.created_at(options);
 			}
 		}
 	};
