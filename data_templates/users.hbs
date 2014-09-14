@@ -1,16 +1,16 @@
 {
-	"users": [
-	{{#repeat 5}}
-	{
-		"id": {{index}},
-		"name": [{{lastName}}, {{firstName}}]
-		"email": "{{email}}",
-		"company": "{{company}}",
-		"age": {{number 18 68}},
-		"password": {{password}},
-		"created_at": {{date}},
-		"updated_at": {{date}}
-	}
-	{{/repeat}}
-	]
+  "users": [
+  {{#repeat 5}}
+  {
+    "id": {{index}},
+    "name": ["{{lastName}}", "{{firstName}}"],
+    "email": "{{email}}",
+    "company": "{{company}}",
+    "age": {{number 18 68}},
+    "password": "{{password}}",
+    "created_at": "{{date}}",
+    "updated_at": "{{date}}"
+  }
+  {{/repeat}}
+  ]
 }

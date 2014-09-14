@@ -1,12 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var util = require("util");
-var controller = {
-	home: new (require("./controller/home"))(),
-	services: new (require("./controller/services"))(),
-	users: new (require("./controller/users"))()
-};
-console.log("controller: ", controller);
+var users = new (require("./controller/users"))();
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -18,12 +13,9 @@ router.get('/', function(req, res) {
   res.render('index', renderedPageProperties);
 });
 
-router.put("/", controller.home.POST);
-router.post("/register", controller.users.registerUser);
-router.post("/user/:EMAIL", controller.users.postForUserInfo);
-router.all("/users", controller.users.generic);
-router.get("/services", controller.services.GET);
-router.post("/services", controller.services.POST);
-router.head("/services", controller.services.HEAD);
+router.all("/users", users.generic);
+router.get("/user", users.getUser);
+router.post("/register", users.postRegisterUser);
+router.post("/user/:EMAIL", users.postForUserInfo);
 
 module.exports = router;
