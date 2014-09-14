@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIRECTORY=.data
+DIRECTORY=./.data
 PORT=17017
 
 function start() {
@@ -17,10 +17,18 @@ function start() {
 }
 
 function stop() {
-	pkill --signal SIGINT roadside-romeo
-	echo "stopping mongodb instance"
-	kill $(cat ./.pid)
-	rm -v ./mongodb.pid
+	PIDFILE=./mongodb.pid
+	PID=$(cat $PIDFILE)
+	pkill -signal SIGINT roadside-romeo
+	echo "killing mongodb instance by PID ($PID)"
+	if [ ! -f "$PIDFILE" ]; then
+		kill $(pgrep mongod)
+	else
+		kill -F $PIDFILE
+	fi
+	if [ -d "./mongodb.pid" ]; then
+		rm -v ./mongodb.pid
+	fi
 }
 
 $1
