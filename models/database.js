@@ -2,10 +2,10 @@ module.exports = exports = Database;
 
 function Database(options) {
 	"use strict";
-	console.log("instantiating goose");
 	options = options || {};
 	var mongoose = require("mongoose");
 	var util = require("util");
+	util.log("instantiating goose");
 	mongoose.connect(options.connect || "mongodb://localhost:17017/db");
 	var db = mongoose.connection;
 	db.on("error", console.error.bind(console, "DB connection error: "));

@@ -19,23 +19,19 @@ function Users() {
 
 	function errHandler(err) {
 		util.log("Users error: ", err);
-		res.status(err.status).send(err.message).end();
+		res.status(500).send(err);
 	}
 
 	function registerUser(req, res) {
 		util.log("Users controller registering user");
 		var User = goose.User;
 		User.create(getNewUserData(), createResult);
-		console.log("getNewUserData:\n\n", getNewUserData());
-
-		//User.create({ "name": "testUser0" }, createResult);
 
 		function createResult(err, result) {
 			util.log("response from DB: ", "err: ", err, "result: ", result);
 			if(err) return errHandler(err);
-
-			console.log("result: ", result);
-			res.status(200).send(result);
+			result.password = new Buffer(result.email + ":" + result.password).toString('base64');
+			res.status(200).send(result).end();
 		}
 
 		function getNewUserData() {
@@ -56,32 +52,31 @@ function Users() {
 	function postForUserInfo(req, res) {
 		util.log("Users controller requesting user info");
 		var User = goose.User;
-		var fields = "email";
-		var credentials = ["", "dummy"];
-		var password = new Buffer(credentials[1], "base64").toString("ascii");
-			/*console.log(new Buffer("Hello World").toString('base64'));
-			SGVsbG8gV29ybGQ=
-			> console.log(new Buffer("SGVsbG8gV29ybGQ=", 'base64').toString('ascii'))
-			Hello World*/
+		var fields = "email password";
+		var credentials = req.headers.authorization.split(":");
+		if(credentials.length === 0) {
+			response.status(400).send("Missing some stuff");
+			return;
+		}
 
-		User.findOne({ email: req.params.EMAIL }, fields, queryResult);
-		res.status(200).send("OK"); // eventually return user info, not OK
+		var auth = new Buffer(credentials[1], "base64").toString("ascii");
+		User.findOne({ email: req.params.EMAIL }, queryResult);
 
 		function queryResult(err, result) {
 			if(err) return errHandler(err);
 
-			if(result && result.password !== password) 
-				res.status(401).send("Invalid credentials"); 
-				return;
+			if(result && (result.email + ":" + result.password !== auth)) 
+				res.status(401).send("Invalid credentials").end(); 
 
-			if(!result) res.status(404).send("User does not exist"); return;
-			
-			res.status(200).send(result);
-		}
+			if(!result) res.status(404).send("User does not exist");
+	
+			User.findById(result._id, function(err, doc) {
+				doc.name = ["Great", "Success!"];
+				doc.save(function() {
+					res.status(200).send(doc);
+				});
+			});
 
-		function getQuery() {
-			return {
-			};
 		}
 	}
 
@@ -141,7 +136,6 @@ function Users() {
 	}
 
 	function head(req, res) {
-		console.log("req.query? ", req.query);
 		res.status(200).end();
 	}
 
