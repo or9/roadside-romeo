@@ -6,7 +6,6 @@ function Database(options) {
 	options = options || {};
 	var mongoose = require("mongoose");
 	var util = require("util");
-	var Schema = mongoose.Schema;
 	mongoose.connect(options.connect || "mongodb://localhost:17017/db");
 	var db = mongoose.connection;
 	db.on("error", console.error.bind(console, "DB connection error: "));
@@ -17,7 +16,7 @@ function Database(options) {
 			user: require("./schema-user"),
 			service: require("./schema-service")
 		};
-			
+
 		this.User = mongoose.model("User", schema.user);
 		this.Service = mongoose.model("Service", schema.service);
 
@@ -48,8 +47,8 @@ function save(model) {
 		model.save(errCallback);
 }
 
-function create(model, properties) {
-	model.create(properties, errCallback);
+function create(model, properties, callback) {
+	model.create(properties, callback);
 }
 
 function update(model, updateByObject) {

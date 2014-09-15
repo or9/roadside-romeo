@@ -26,9 +26,12 @@ function Users() {
 		util.log("Users controller registering user");
 		var User = goose.User;
 		User.create(getNewUserData(), createResult);
+		console.log("getNewUserData:\n\n", getNewUserData());
+
+		//User.create({ "name": "testUser0" }, createResult);
 
 		function createResult(err, result) {
-			util.log("response from DB: ", err, result);
+			util.log("response from DB: ", "err: ", err, "result: ", result);
 			if(err) return errHandler(err);
 
 			console.log("result: ", result);
@@ -38,6 +41,7 @@ function Users() {
 		function getNewUserData() {
 			var data = dummyJson.parse(template, {helpers: templateData.helper});
 			var newUserData = JSON.parse(data).users[0];
+			delete newUserData.id;
 			
 			for(var key in req.body) {
 				if(key !== ("password" || "id")) 
@@ -45,7 +49,6 @@ function Users() {
 			}
 			newUserData.created_at = new Date();
 			newUserData.updated_at = new Date();
-			console.log("creating user based on this data: ", newUserData);
 			return newUserData;
 		}
 	}
@@ -129,8 +132,12 @@ function Users() {
 	}
 
 	function reset(req, res) {
-		User.remove({});
-		res.status(200).send("Done. It's all gone");
+		var User = goose.User;
+		var query = User.remove({});
+		query.exec();
+		User.find({}, function(err, result) {
+			res.status(200).send(result);
+		});
 	}
 
 	function head(req, res) {
