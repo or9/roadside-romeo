@@ -5,7 +5,7 @@
   "scripts": {
     "start": "./db.sh start",
     "stop": "./db.sh stop",
-    "test": "./node_modules/.bin/newman -c postman/DAPI.json.postman_collection -e postman/DAPI.postman_environment -o newman.out.json"
+    "test": "./newman.sh"
   },
   "dependencies": {
     "express": "~4.8.6",

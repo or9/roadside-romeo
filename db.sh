@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIRECTORY=./.data
+DIRECTORY=.data
 PORT=17017
 
 function start() {

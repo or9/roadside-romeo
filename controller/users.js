@@ -53,7 +53,7 @@ function Users() {
 		util.log("Users controller requesting user info");
 		var User = goose.User;
 		var fields = "email password";
-		var credentials = req.headers.authorization.split(":");
+		var credentials = req.headers.authorization.split(" ");
 		if(credentials.length === 0) {
 			response.status(400).send("Missing some stuff");
 			return;
