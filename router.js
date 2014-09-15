@@ -1,21 +1,13 @@
-var express = require('express');
-var router = express.Router();
+var router = require("express").Router();
 var util = require("util");
 var users = new (require("./controller/users"))();
+var home = new (require("./controller/home"))();
 
-/* GET home page. */
-router.get('/', function(req, res) {
-	var renderedPageProperties = {};
-	util.log("getting response from req.query: ", req.query);
-	for(var key in req.query) {
-		renderedPageProperties[key] = req.query[key];
-	}
-  res.render('index', renderedPageProperties);
-});
-
-router.all("/users", users.generic);
+router.get("/", home.get);
+router.get("/users", users.generic);
 router.get("/user", users.getUser);
 router.post("/register", users.postRegisterUser);
 router.post("/user/:EMAIL", users.postForUserInfo);
+router.post("/users/reset", users.reset);
 
 module.exports = router;

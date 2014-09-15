@@ -1,8 +1,8 @@
 module.exports = exports = Database;
 
 function Database(options) {
-	console.log("instantiating goose");
 	"use strict";
+	console.log("instantiating goose");
 	options = options || {};
 	var mongoose = require("mongoose");
 	var util = require("util");
@@ -10,31 +10,30 @@ function Database(options) {
 	mongoose.connect(options.connect || "mongodb://localhost:17017/db");
 	var db = mongoose.connection;
 	db.on("error", console.error.bind(console, "DB connection error: "));
-	db.once("open", function() {
+	db.once("open", init.bind(this));
+
+	function init() {
 		var schema = {
 			user: require("./schema-user"),
 			service: require("./schema-service")
 		};
+			
+		this.User = mongoose.model("User", schema.user);
+		this.Service = mongoose.model("Service", schema.service);
 
-		this.update = update;
-		this.find = find;
-		this.findById = findById;
-		this.remove = remove;
-		this.removeAll = removeAll.bind(null, true);
-		this.save = save;
-		this.create = create;
-		this.findByIdAndUpdate = findByIdAndUpdate;
-		this.findById = findById;
-		
-		this.model = {
-			User: function() {
-				return mongoose.model("User", schema.user);
-			},
-			service: function() {
-				return mongoose.model("Service", schema.service);	
-			}
-		};	
-	}.bind(this));
+		initPublicMethods.call(this);
+	}
+}
+
+function initPublicMethods() {
+	this.update = update;
+	this.find = find;
+	this.findById = findById;
+	this.findByIdAndUpdate = findByIdAndUpdate;
+	this.remove = remove;
+	this.removeAll = removeAll.bind(null, true);
+	this.save = save;
+	this.create = create;
 }
 
 function errHandler(err) {

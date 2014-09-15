@@ -2,10 +2,8 @@ var util = require("util");
 var fs = require("fs");
 var dummyJson = require("dummy-json");
 var xml2js = require("xml2js");
-var goose = new require("../models/database")();
+var goose = new (require("../models/database"))();
 module.exports = Base;
-
-console.log("got the golden goose, and here it is: ", goose);
 
 function Base(controllerName) {
 	var instanceName = controllerName;

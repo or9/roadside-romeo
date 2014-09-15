@@ -3,11 +3,15 @@ module.exports = Home;
 
 function Home() {
 	require("./base").call(this, "home");
-	this.POST = post;
+	this.get = get;
 
-	function post(req, res) {
-		util.log("POSTing via Home controller's route");
-		
-	}
+  function get(req, res) {
+    var renderedPageProperties = {};
+    util.log("getting response from req.query: ", req.query);
+    for(var key in req.query) {
+      renderedPageProperties[key] = req.query[key];
+    }
+    res.render('index', renderedPageProperties);
+  }
 
 }
