@@ -13,7 +13,7 @@ function start() {
 
 	echo 2>&1 "Starting MongoDB…"
 	mongod --dbpath ./$DIRECTORY --port $PORT --pidfilepath ./mongodb.pid &
-	node bin/www
+	node --harmony bin/www
 }
 
 function stop() {

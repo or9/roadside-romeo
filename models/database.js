@@ -5,8 +5,9 @@ function Database(options) {
 	options = options || {};
 	var mongoose = require("mongoose");
 	var util = require("util");
+	var url_mongo = process.env.MONGOHQ_URL || "mongodb://localhost:17017";
 	util.log("instantiating goose");
-	mongoose.connect(options.connect || "mongodb://localhost:17017/db");
+	mongoose.connect(options.connect || url_mongo);
 	var db = mongoose.connection;
 	db.on("error", console.error.bind(console, "DB connection error: "));
 	db.once("open", init.bind(this));
