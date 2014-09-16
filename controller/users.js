@@ -63,7 +63,7 @@ function Users() {
 		User.findOne({ email: req.params.EMAIL }, queryResult);
 
 		function queryResult(err, result) {
-			if(err) return errHandler(err);
+			if(err) return errHandler(err, res);
 
 			if(result && (result.email + ":" + result.password !== auth)) 
 				res.status(401).send("Invalid credentials").end(); 
@@ -71,7 +71,8 @@ function Users() {
 			if(result && result._id) {
 				User.findById(result._id, function(err, doc) {
 					doc.name = ["Great", "Success!"];
-					doc.save(function() {
+					doc.save(function(err) {
+						if(err) return errHandler(err, res);
 						res.status(200).send(doc);
 					});
 				});
@@ -89,7 +90,7 @@ function Users() {
 		User.findOne(getQuery(), fields, queryResult);
 
 		function queryResult(err, result) {
-			if(err) return errHandler(err);
+			if(err) return errHandler(err, res);
 			if(!result) res.status(404).send("No results");
 			else res.status(200).send(result);
 		}
@@ -130,7 +131,9 @@ function Users() {
 
 	function reset(req, res) {
 		var User = goose.User;
-		var query = User.remove({});
+		req.body = req.body || {};
+		var username = req.body.email || {};
+		var query = User.remove(username);
 		query.exec();
 		User.find({}, function(err, result) {
 			res.status(200).send(result);
