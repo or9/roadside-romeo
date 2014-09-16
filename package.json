@@ -15,10 +15,10 @@
     "mongodb": "*",
     "mongoose": "*",
     "serve-favicon": "~2.0.1",
-    "dummy-json": "0.0.2"
+    "dummy-json": "0.0.2",
+    "debug": "^1.0.4"
   },
   "devDependencies": {
-    "debug": "^1.0.4",
     "jade": "~1.5.0",
     "xml2js": "^0.4.4",
     "newman": "^1.1.1"
