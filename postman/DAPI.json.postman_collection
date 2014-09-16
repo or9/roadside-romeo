@@ -42,14 +42,14 @@
 			"data": [],
 			"dataMode": "raw",
 			"version": 2,
-			"tests": "var schema = {\n  \"type\": \"object\",\n  \"properties\": {\n    \"email\": \"string\",\n    \"company\": \"string\",\n    \"age\": \"integer\",\n    \"created_at\": \"string\",\n    \"updated_at\": \"string\",\n    \"_id\": \"string\",\n    \"name\": \"array\"\n  },\n  \"required\": [\"email\", \"_id\", \"name\", \"password\"]\n};\n\nvar data = JSON.parse(responseBody);\n\nvar result = tv4.validateResult(data, schema);\n\ntests[\"Body is present\"] = !!data;\n\ntests[\"Schema should be valid\"] = result.valid;\n\ntests[\"headers contain app/json\"] = responseHeaders[\"Content-Type\"] === \"application/json\";\n\ntests[\"Status code is 200\"] = responseCode.code === 200;\n\ntests[\"Data has property name\"] = data.name.length !== 0;\n\npostman.setEnvironmentVariable(\"auth\", data.password);\npostman.setEnvironmentVariable(\"username\", data.email);",
-			"time": 1410828098984,
+			"tests": "var schema = {\n  \"type\": \"object\",\n  \"properties\": {\n    \"email\": \"string\",\n    \"company\": \"string\",\n    \"age\": \"integer\",\n    \"created_at\": \"string\",\n    \"updated_at\": \"string\",\n    \"_id\": \"string\",\n    \"name\": \"array\"\n  },\n  \"required\": [\"email\", \"_id\", \"name\", \"password\"]\n};\n\nvar data = JSON.parse(responseBody);\n\nvar result = tv4.validateResult(data, schema);\n\ntests[\"Body is present\"] = !!data;\n\ntests[\"Schema should be valid\"] = result.valid;\n\ntests[\"headers contain app/json\"] = responseHeaders[\"Content-Type\"].has(\"application/json\");\n\ntests[\"Status code is 200\"] = responseCode.code === 200;\n\ntests[\"Data has property name\"] = data.name.length !== 0;\n\npostman.setEnvironmentVariable(\"auth\", data.password);\npostman.setEnvironmentVariable(\"username\", data.email);",
+			"time": 1410873041867,
 			"name": "User Registration",
 			"description": "Creates a user with given parameters and returns a temporary password required for login  \n####Body\n`email` will be used as username _Required_  \n_The following properties are optional_  \n`name` Array  \n`company` String  \n`age` Number",
 			"collectionId": "fd7e340a-c478-c7fa-5281-41a32ac4a291",
 			"responses": [],
 			"synced": false,
-			"rawModeData": "{\n  \"email\": \"bazookajoe@asdf.com\",\n  \"name\": [\"Joe\", \"Bazooka\"]\n}"
+			"rawModeData": "{\n  \"email\": \"{{username}}\",\n  \"name\": [\"Joe\", \"Bazooka\"]\n}"
 		},
 		{
 			"id": "801c62c4-ebfc-6a05-d0b1-47a0bdd0afc8",
