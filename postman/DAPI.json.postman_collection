@@ -97,8 +97,8 @@
 			"data": [],
 			"dataMode": "raw",
 			"version": 2,
-			"tests": "var data = JSON.parse(responseBody);\n\ntests[\"Response headers Content-Type should be app/json\"] = responseHeaders[\"Content-Type\"] === \"application/json\";\n\ntests[\"data has all the properties\"] = !!data.name;\n\ntests[\"email is the same as env email\"] = data.email === environment.username;\n\ntests[\"data.password is not the same as env password\"] = data.password !== environment.auth;\n\ntests[\"response's data.name is changed to 'Great, Success!'\"] = data.name[0] === \"Great\" && data.name[1] === \"Success!\";",
-			"time": 1410828110768,
+			"tests": "var data = responseCode.code !== 404? JSON.parse(responseBody): responseBody;\n\nif(responseCode.code !== 404) {\n    tests[\"Response headers Content-Type should be app/json\"] = responseHeaders[\"Content-Type\"].has(\"application/json\");\n  \n  tests[\"data has all the properties\"] = !!data.name;\n  \n  tests[\"email is the same as env email\"] = data.email === environment.username;\n  \n  tests[\"data.password is not the same as env password\"] = data.password !== environment.auth;\n\n  tests[\"response's data.name is changed to 'Great, Success!'\"] = data.name[0] === \"Great\" && data.name[1] === \"Success!\";\n  \n} else {\n  tests[\"Response headers Content-Type should be text/html\"] = responseHeaders[\"Content-Type\"].has(\"text/html\");\n  \n  tests[\"user's nonexistence indicated in response\"] = responseBody === \"User does not exist\";\n}",
+			"time": 1410872694134,
 			"name": "Get Registered User's Info",
 			"description": "####Headers\n`Authentication`: `Basic {{username-password}}` _Required_  \n####Body\n_None_",
 			"collectionId": "fd7e340a-c478-c7fa-5281-41a32ac4a291",
@@ -108,7 +108,7 @@
 		},
 		{
 			"id": "eb5e62ba-401a-9b61-d8a0-9ff2f518b2b0",
-			"headers": "",
+			"headers": "Content-Type: application/json\n",
 			"url": "{{url_base}}/users/reset",
 			"preRequestScript": "postman.setGlobalVariable(\"request\", request);",
 			"pathVariables": {},
@@ -117,13 +117,13 @@
 			"dataMode": "raw",
 			"version": 2,
 			"tests": "var data = JSON.parse(responseBody);\n\ndelete environment.username;\ndelete environment.auth;\n\ntests[\"responseCode status should be 200\"] = responseCode.code === 200;\n\ntests[\"data returns empty array\"] = data.length === 0;",
-			"time": 1410823428902,
+			"time": 1410871897317,
 			"name": "Reset User DB Model",
 			"description": "",
 			"collectionId": "fd7e340a-c478-c7fa-5281-41a32ac4a291",
 			"responses": [],
 			"synced": false,
-			"rawModeData": ""
+			"rawModeData": "{\n  \"email\": \"{{username}}\"\n}"
 		}
 	]
 }
