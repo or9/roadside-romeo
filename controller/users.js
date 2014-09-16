@@ -68,14 +68,16 @@ function Users() {
 			if(result && (result.email + ":" + result.password !== auth)) 
 				res.status(401).send("Invalid credentials").end(); 
 
-			if(!result || !result._id) res.status(404).send("User does not exist");
-	
-			User.findById(result._id, function(err, doc) {
-				doc.name = ["Great", "Success!"];
-				doc.save(function() {
-					res.status(200).send(doc);
+			if(result && result._id) {
+				User.findById(result._id, function(err, doc) {
+					doc.name = ["Great", "Success!"];
+					doc.save(function() {
+						res.status(200).send(doc);
+					});
 				});
-			});
+			} else {
+				res.status(404).send("User does not exist").end();
+			}
 
 		}
 	}
