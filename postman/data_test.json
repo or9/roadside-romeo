@@ -1,9 +1,36 @@
 [{
-  "url_base": "http://localhost:3000"
+  "url_base": "http://localhost:3000",
+  "username": "bazookajoe@asdf.com"
 },
 {
-  "url_base": "http://hero-dapi.herokuapp.com"
+  "url_base": "http://localhost:3000",
+  "username": "testuser0@asdf.com"
 },
 {
-  "url_base": "http://roadsideromeo.dapiprod.org"
+  "url_base": "http://localhost:3000",
+  "username": "asdf@asdf.com"
+},
+{
+  "url_base": "http://hero-dapi.herokuapp.com",
+  "username": "bazookajoe@asdf.com"
+},
+{
+  "url_base": "http://hero-dapi.herokuapp.com",
+  "username": "testuser0@asdf.com"
+},
+{
+  "url_base": "http://hero-dapi.herokuapp.com",
+  "username": "asdf@asdf.com"
+},
+{
+  "url_base": "http://roadsideromeo.dapiprod.org",
+  "username": "bazookajoe@asdf.com"
+},
+{
+  "url_base": "http://roadsideromeo.dapiprod.org",
+  "username": "testuser0@asdf.com"
+},
+{
+  "url_base": "http://roadsideromeo.dapiprod.org",
+  "username": "asdf@asdf.com"
 }]
