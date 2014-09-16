@@ -15,7 +15,7 @@
     "mongodb": "*",
     "mongoose": "*",
     "serve-favicon": "~2.0.1",
-    "dummy-json": "0.0.2",
+    "dummy-json": "0.0.2"
   },
   "devDependencies": {
     "debug": "^1.0.4",
