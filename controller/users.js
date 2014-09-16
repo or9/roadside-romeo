@@ -17,7 +17,7 @@ function Users() {
 	this.postForUserInfo = postForUserInfo;
 	this.reset = reset;
 
-	function errHandler(err) {
+	function errHandler(err, res) {
 		util.log("Users error: ", err);
 		res.status(500).send(err);
 	}
@@ -29,7 +29,7 @@ function Users() {
 
 		function createResult(err, result) {
 			util.log("response from DB: ", "err: ", err, "result: ", result);
-			if(err) return errHandler(err);
+			if(err) return errHandler(err, res);
 			result.password = new Buffer(result.email + ":" + result.password).toString('base64');
 			res.status(200).send(result).end();
 		}
