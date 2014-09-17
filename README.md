@@ -11,7 +11,7 @@ npm start
 Application listens on port 3000  
 ##Running This App
 `npm start`  
-(from a different terminal)
+(from a different terminal)  
 `npm test`  
 In order to stop the application, issue an `npm stop`  
 ##Developing
