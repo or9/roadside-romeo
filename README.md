@@ -1,4 +1,6 @@
 #Express Skeleton Getting Started
+##Generating the App
+This is not applicable to running, only creating a new application.
 ```
 npm install -g express-generator
 express appDirname
@@ -7,48 +9,12 @@ npm install
 npm start
 ```
 Application listens on port 3000  
+##Running This App
+`npm start`  
+(from a different terminal)
+`npm test`  
+In order to stop the application, issue an `npm stop`  
+##Developing
 `router.js` is the single router for Application
-##Sample Postman Workflow
-###Sample API
-
-####Get Offer _[Unpublished]_  
-URL: `/api/v1/offer/{offer_id}`  
-Verb: `GET`  
-Description: Returns the quote for the offer  
-Response Formats: `json, xml`  
-__Request__  
-HTTP Headers [Name | Description | Required]  
->`Authorization` _Access token_ __Required__  
-`Accept` [`application/json` | `application/xml`] __Required__   
-
-Path Parameters [Name | Description]  
->`offer_id` _offerID_	 
-Body: _None_   
-
-__Response__ 
->HTTP Status Code: 200 (“OK”) 
-
-_Possible Errors_ [Error Code | Description]
->`ERROR-500`: `Unable to process your request, please try again`.  
-
-####Examples
-__JSON Request__  
-GET `/api/v1/offer/1234
-HTTP Headers:
-> `Accept: application/json  
-> Authorization: Basic 1234567890abcdefghijklmnop
-Body: _None_  
-__JSON Response__
-HTTP Status Code: `200`
-Body:
-```
-{
-	"id": "1234",
-		"total": "45.00",
-		"taxes": {
-			"GST": "3.28",
-			"PST":"3.28"
-		}
-}
-```
-
+Requests are routed to their appropriate `controller` as designated by `router.js`. Each `controller` may have a corresponding `model` and each model a `schema` (also located under `models/`. The database is initialized within `base` controller, and this is where our models are instnatiated.
+`postman/` holds Data, Collection and Environment JSON files used by Postman, Jetpacks and Newman. Tests are written in Jetpack and Newman will run those tests and set `environment variables` and iterations based on the entries in our data file.
