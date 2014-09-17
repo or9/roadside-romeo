@@ -5,6 +5,7 @@
 * [MongoDB - Database](models/)  
 * [Data Sources - dummy-json Generation](data_templates/)  
 * [Controllers](controllers/)  
+
 ##Generating the App
 This is not applicable to running, only creating a new application.
 ```
