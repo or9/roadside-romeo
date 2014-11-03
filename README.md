@@ -10,7 +10,9 @@
 `npm start` runs db.sh for the purpose of starting MongoDB locally  
 (from a different terminal)  
 `npm test` runs newman.sh for the sake of cleanliness, so that we can keep our runtime variables in one place and have a nice looking command.  
-`npm stop` stops the application and/or database  
+`npm stop` stops the application and/or database. Normal process:
+* `[Ctrl+c]` stops the web server  
+* `npm stop` close the database connection  
 Open browser @ url `localhost:3000` and you should see the welcome screen. Routes can be modified by editing `router.js` which should relate to a `Controller` which should have a related `Model`.  
 ##Generating the App
 This is not applicable to running, only creating a new application.
