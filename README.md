@@ -6,6 +6,12 @@
 * [Data Sources - dummy-json Generation](data_templates/)  
 * [Controllers](controllers/)  
 
+##Running This App
+`npm start` runs db.sh for the purpose of starting MongoDB locally  
+(from a different terminal)  
+`npm test` runs newman.sh for the sake of cleanliness, so that we can keep our runtime variables in one place and have a nice looking command.  
+`npm stop` stops the application and/or database  
+Open browser @ url `localhost:3000` and you should see the welcome screen. Routes can be modified by editing `router.js` which should relate to a `Controller` which should have a related `Model`.  
 ##Generating the App
 This is not applicable to running, only creating a new application.
 ```
@@ -16,11 +22,6 @@ npm install
 npm start
 ```
 Application listens on port 3000  
-##Running This App
-`npm start` runs db.sh for the purpose of starting MongoDB locally  
-(from a different terminal)  
-`npm test` runs newman.sh for the sake of cleanliness, so that we can keep our runtime variables in one place and have a nice looking command.  
-`npm stop` stops the application and/or database  
 ##Developing
 `router.js` is the single router for Application  
 Requests are routed to their appropriate `controller` as designated by `router.js`. Each `controller` may have a corresponding `model` and each model a `schema` (also located under `models/`). The database is initialized within `base` controller from `models/database.js`, and this is where our models are instnatiated.  
