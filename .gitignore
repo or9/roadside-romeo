@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 *
 
 !.gitignore
 !.vimrc
+=======
+*.swp
+*.log
+node_modules/
+*.pid
+.data/
+target/
+>>>>>>> 0d12e54fe6b4c78c6fc161946590abad83a7dc73
